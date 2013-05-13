@@ -22,7 +22,7 @@ int RekurencyjnyRobot::posortuj(){
 
 void RekurencyjnyRobot::sprawdzGlebiej(int pozycja){
 //    cout << "sprawdzam" ;
-     stanyPolek.push_back(wirtualnaPolka);
+     stanyPolek.push_back(*wirtualnaPolka);
     przesunPojemnikiNaWirtualnej(pozycja);
     
     if(!sprawdzCzyWarto() || sprawdzCzyWirtualnaPosortowana()
@@ -73,19 +73,19 @@ bool RekurencyjnyRobot::przesunPojemnikiNaWirtualnej(int pozycjaRamy){
 
 void RekurencyjnyRobot::cofnijPrzesuwanieNaWirtualnej(){
     int ostatniRuch =  listaRuchow.back();
-     Polka::iterator poczatekRamy(wirtualnaPolka.end());
+     Polka::iterator poczatekRamy(wirtualnaPolka->end());
      --------poczatekRamy;
      
      Polka ramieRobota;
-     ramieRobota.insert(ramieRobota.end(), poczatekRamy, wirtualnaPolka.end() );
-     wirtualnaPolka.erase(poczatekRamy, wirtualnaPolka.end());
+     ramieRobota.insert(ramieRobota.end(), poczatekRamy, wirtualnaPolka->end() );
+     wirtualnaPolka->erase(poczatekRamy, wirtualnaPolka->end());
      
-     Polka::iterator miejsceOstatniegoRuchu(wirtualnaPolka.begin());
+     Polka::iterator miejsceOstatniegoRuchu(wirtualnaPolka->begin());
      
      for(int i = 0; i < ostatniRuch; ++i)
          ++miejsceOstatniegoRuchu;
      
-     wirtualnaPolka.insert(miejsceOstatniegoRuchu, ramieRobota.begin(),
+     wirtualnaPolka->insert(miejsceOstatniegoRuchu, ramieRobota.begin(),
                                                 ramieRobota.end());
      listaRuchow.pop_back();
 }
@@ -104,7 +104,7 @@ bool RekurencyjnyRobot::sprawdzCzyWirtualnaPosortowana(){
 bool RekurencyjnyRobot::sprawdzCzyTakieSame(const Polka &polkaDoSprawdzenia) const{
 
    Polka::const_iterator ipolka(polkaDoSprawdzenia.begin()),
-           iwirtualna(wirtualnaPolka.begin());
+           iwirtualna(wirtualnaPolka->begin());
    for(int i = 0; i < iloscPojemnikow; ++i){
 
        if(!(*ipolka == *iwirtualna))

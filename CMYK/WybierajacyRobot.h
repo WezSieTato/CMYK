@@ -12,7 +12,7 @@
 
 class WybierajacyRobot : public Robot {
 public:
-    WybierajacyRobot(const Polka &npolka) : Robot(npolka) {};
+    WybierajacyRobot(Polka *npolka) : Robot(npolka) {};
     int posortuj();
     virtual ~WybierajacyRobot();
 private:

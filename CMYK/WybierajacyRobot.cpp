@@ -34,12 +34,12 @@ void WybierajacyRobot::posortujRekurencyjnie(){
         cout << "Posortuj rekurencyjnie!" << endl;
     
     Polka malaPolka;
-    Polka::iterator poczN(polka.end());
-    Polka::iterator konN(polka.end());
+    Polka::iterator poczN(polka->end());
+    Polka::iterator konN(polka->end());
     --------------poczN;
     malaPolka.insert(malaPolka.begin(),poczN,konN);
     
-    RekurencyjnyRobot robotPomocniczy(malaPolka);
+    RekurencyjnyRobot robotPomocniczy(&malaPolka);
     robotPomocniczy.posortuj();
         
     if(DEBUG_MODE)
@@ -57,8 +57,8 @@ void WybierajacyRobot::posortujRekurencyjnie(){
 void WybierajacyRobot::przeliczKolory(){
     for (int i = 0; i < iloscPojemnikow; ++i)
         iloscKoloru[i] = 0;
-    Polka::const_iterator koniec = polka.end();
-    for (Polka::iterator iter = polka.begin(); iter != koniec;++iter){
+    Polka::const_iterator koniec = polka->end();
+    for (Polka::iterator iter = polka->begin(); iter != koniec;++iter){
         ++iloscKoloru[(int)(iter->getKolor())];
     }
 }
@@ -75,14 +75,14 @@ bool WybierajacyRobot::ustalPoczatekSortowania(){
     Polka::iterator tmp;
 
     if (!iloscUlozonych){
-        tmp = polka.begin();
+        tmp = polka->begin();
     }
     else{
         tmp = ostatnioUlozony;
         ++tmp;
     }
     
-    if (tmp == polka.end())
+    if (tmp == polka->end())
         return false;
    
     if (*tmp == szukanyKolor){
@@ -104,7 +104,7 @@ void WybierajacyRobot::przesunJeden(){
         cout << "Poczatek sortowania: " << iloscUlozonych << endl;
     
     if (!iloscUlozonych)
-        iter = polka.begin();
+        iter = polka->begin();
     else{
         iter = ostatnioUlozony;
         ++iter;

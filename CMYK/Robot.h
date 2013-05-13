@@ -22,29 +22,29 @@ typedef list< Polka > ListaPolek;
 
 class Robot {
 public:
-    Robot(const Polka &npolka);
+    Robot(Polka *npolka);
     
     void podajStanPolki() const;
     
     virtual int posortuj() = 0;
     
     void setView(View *nview);
-    Polka getPolka() const;
+    Polka* getPolka() const;
     
 //    virtual ~Robot();
 protected:
-    Polka polka;
+    Polka *polka;
     int licznikRuchow, iloscPojemnikow;
     bool czyPosortowane() const;
-    bool czyPosortowane(const Polka &celSortowania) const;
+    bool czyPosortowane(Polka *celSortowania) const;
     
-    void podajStanPolki(const Polka &celSkanowania) const;
+    void podajStanPolki(Polka *celSkanowania) const;
     
     bool przesunPojemniki(list<Pojemnik>::iterator pozycjaRamy);
-    bool przesunPojemniki(list<Pojemnik>::iterator pozycjaRamy, Polka &cel);
+    bool przesunPojemniki(list<Pojemnik>::iterator pozycjaRamy, Polka *cel);
     
     bool przesunPojemniki(int pozycjaRamy);
-    bool przesunPojemniki(int pozycjaRamy, Polka &cel);
+    bool przesunPojemniki(int pozycjaRamy, Polka *cel);
 
 private:
     View *view;

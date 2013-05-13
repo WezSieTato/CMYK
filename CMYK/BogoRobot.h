@@ -13,7 +13,7 @@
 class BogoRobot : public Robot {
 public:
 
-    BogoRobot(const Polka &npolka) : Robot(npolka){};
+    BogoRobot(Polka *npolka) : Robot(npolka){};
     int posortuj();
     
 //    virtual ~BogoRobot();

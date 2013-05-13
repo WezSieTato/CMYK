@@ -15,58 +15,38 @@
 
 Controller::Controller(Polka polka, int algorytmy) {
     wielkoscPolki = polka.size();
-//    this->algorytmy = algorytmy;
-    Robot *roboty[3];
-    WybierajacyRobot r0(polka);
-    RekurencyjnyRobot r1(polka);
-    BogoRobot r2(polka);
-    roboty[0] = &r0;
-    roboty[1] = &r1;
-    roboty[2] = &r2;
+    algorytm = algorytmy;
     
+    switch(algorytm){
+        case WYB:
+            robot = new WybierajacyRobot(&polka);
+            break;
+            
+        case REK:
+            robot = new RekurencyjnyRobot(&polka);
+            break;
+            
+        case LOS:
+            robot = new BogoRobot(&polka);
+            break;
+            
+    }
+    dzialaj();
+}
 
-        for (int i = 0; i < 3 ; ++i){
-        if ((algorytmy & (int)pow(2,i)) == (int)pow(2,i)){
-            alg[i] = true;
-        } else
-            alg[i] = false;
-    }
-    
-//    if(alg[0])
-//        roboty[0] = new WybierajacyRobot(polka);
-//    if(alg[1])
-//        roboty[1] = new RekurencyjnyRobot(polka);
-//    if(alg[2])
-//        roboty[3] = new BogoRobot(polka);
-               
-    
-    for (int i = 0; i < 3 ; ++i){
-        if (alg[i]){
-            roboty[i]->setView(&view);
-            czasy[i] = clock();
-            wyniki[i] = roboty[i]->posortuj();
-            czasy[i] = clock() - czasy[i];
-            view.pokazPolke(roboty[i]->getPolka());
-            view.pokazWynik(wielkoscPolki ,wyniki[i], czasy[i], i); 
-        }
-    }
-    
-        
-//    if(alg[0])
-//        delete roboty[0];
-//    if(alg[1])
-//        delete roboty[1];
-//    if(alg[2])
-//        delete roboty[3];
-   // zaprezentujWynik();
+void Controller::dzialaj(){
+            robot->setView(&view);
+            czas = clock();
+            wynik = robot->posortuj();
+            czas = clock() - czas;
+            view.pokazPolke(robot->getPolka());
+            view.pokazWynik(wielkoscPolki ,wynik, czas, algorytm); 
 }
 
 void Controller::zaprezentujWynik(){
-       for (int i = 0; i < 3 ; ++i){
-           if (alg[i]){
-                 view.pokazWynik(wielkoscPolki, wyniki[i], czasy[i], i);
-           }
-       }
+
+                 view.pokazWynik(wielkoscPolki, wynik, czas, algorytm);
+
 }
 
 Polka Controller::losujPolke(int wielkosc){

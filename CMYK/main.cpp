@@ -27,15 +27,15 @@ int main(int argc, char** argv) {
     for(int i = 3; i < argc; ++i){
         std::string algorytm(argv[i]);
         if(algorytm == "wyb")
-            algorytmy = algorytmy | WYB;
+            algorytmy = WYB;
         else if (algorytm == "rek")
-            algorytmy = algorytmy | REK;
+            algorytmy = REK;
         else if (algorytm == "los")
-            algorytmy = algorytmy | LOS;
+            algorytmy = LOS;
     }
     
     if (!algorytmy)
-        algorytmy = 7;
+        algorytmy = WYB;
     
     if (pierwszyArgument == "3"){
         int min = atoi(argv[2]);

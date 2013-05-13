@@ -8,9 +8,9 @@
 #include "Robot.h"
 #include "View.h"
 
-Robot::Robot(const Polka &npolka) {
+Robot::Robot(Polka *npolka) {
     polka = npolka;
-    iloscPojemnikow = polka.size();
+    iloscPojemnikow = polka->size();
     licznikRuchow = 0;
     view = NULL;
 }
@@ -19,10 +19,10 @@ void Robot::podajStanPolki() const{
     podajStanPolki(polka);
 }
 
-void Robot::podajStanPolki(const Polka &celSkanowania) const{
+void Robot::podajStanPolki(Polka *celSkanowania) const{
     cout << "Stan polki: ";
-    Polka::const_iterator koniec = celSkanowania.end();
-    for (Polka::const_iterator iter = celSkanowania.begin(); iter != koniec;
+    Polka::const_iterator koniec = celSkanowania->end();
+    for (Polka::const_iterator iter = celSkanowania->begin(); iter != koniec;
             ++iter){
         
         cout << *iter;
@@ -34,11 +34,11 @@ bool Robot::czyPosortowane() const{
     return czyPosortowane(polka);
 }
 
-bool Robot::czyPosortowane(const Polka &celSortowania) const{
+bool Robot::czyPosortowane(Polka *celSortowania) const{
     Kolor start = Cyan;
-    Polka::const_iterator koniec = celSortowania.end();
+    Polka::const_iterator koniec = celSortowania->end();
     
-    for(Polka::const_iterator iter = celSortowania.begin(); iter != koniec; ++iter){
+    for(Polka::const_iterator iter = celSortowania->begin(); iter != koniec; ++iter){
         if (*iter < start)
             return false;
         start = iter->getKolor();
@@ -51,9 +51,9 @@ bool Robot::przesunPojemniki(Polka::iterator pozycjaRamy){
     return przesunPojemniki(pozycjaRamy, polka);
 }
 
-bool Robot::przesunPojemniki(list<Pojemnik>::iterator pozycjaRamy, Polka &cel){
+bool Robot::przesunPojemniki(list<Pojemnik>::iterator pozycjaRamy, Polka *cel){
     Polka::iterator koniecRamy(pozycjaRamy);
-    Polka::iterator koniecPolki(cel.end());
+    Polka::iterator koniecPolki(cel->end());
     
     if(koniecRamy == koniecPolki)
             return false;
@@ -65,8 +65,8 @@ bool Robot::przesunPojemniki(list<Pojemnik>::iterator pozycjaRamy, Polka &cel){
     
     Polka ramieRobota;
     ramieRobota.insert(ramieRobota.end(), pozycjaRamy, koniecRamy);
-    cel.erase(pozycjaRamy, koniecRamy);
-    cel.insert(cel.end(), ramieRobota.begin(), ramieRobota.end());
+    cel->erase(pozycjaRamy, koniecRamy);
+    cel->insert(cel->end(), ramieRobota.begin(), ramieRobota.end());
     
 //    podajStanPolki();
     return true;
@@ -80,8 +80,8 @@ bool Robot::przesunPojemniki(int pozycjaRamy){
     return przesunPojemniki(pozycjaRamy, polka);
 }
 
-bool Robot::przesunPojemniki(int pozycjaRamy, Polka &cel){
-    Polka::iterator iter = cel.begin();
+bool Robot::przesunPojemniki(int pozycjaRamy, Polka *cel){
+    Polka::iterator iter = cel->begin();
     for(int i = 0; i < pozycjaRamy; ++i){
         ++iter;
     }
@@ -93,7 +93,7 @@ void Robot::setView(View* nview){
     view->pokazPolke(polka);
 }
 
-Polka Robot::getPolka() const{
+Polka* Robot::getPolka() const{
     return polka;
 }
 

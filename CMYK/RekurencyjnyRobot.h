@@ -12,8 +12,8 @@
 
 class RekurencyjnyRobot : public Robot {
 public:
-    RekurencyjnyRobot(const Polka &npolka) : Robot(npolka){
-        wirtualnaPolka = npolka;
+    RekurencyjnyRobot(Polka *npolka) : Robot(npolka){
+        wirtualnaPolka = new Polka(*npolka);
         znalezionoRozwiazanie = false;
     };
     
@@ -22,7 +22,7 @@ public:
     virtual ~RekurencyjnyRobot();
 private:
     list<int> listaRuchow, najlepszaKombinacja;
-    Polka wirtualnaPolka;
+    Polka *wirtualnaPolka;
     ListaPolek stanyPolek;
     bool znalezionoRozwiazanie;
     

@@ -29,9 +29,12 @@ public:
 private:
      View view;
     int wielkoscPolki;
-    int wyniki[3];
-    clock_t czasy[3];
-    bool alg[3];
+    int wynik;
+    clock_t czas;
+    int algorytm;
+    
+    void dzialaj();
+    Robot *robot;
 
 };
 

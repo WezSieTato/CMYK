@@ -15,9 +15,9 @@ class View {
 public:
     View();
     
-    void pokazPrzesuniecie(int pozycjaPrzesuniecia, const Polka &polka);
+    void pokazPrzesuniecie(int pozycjaPrzesuniecia, const Polka *polka);
     void pokazWynik(int wielkosc, int wynik,clock_t czas, int algorytm);
-    void pokazPolke(const Polka &polka);
+    void pokazPolke(const Polka *polka);
     
     
     virtual ~View();

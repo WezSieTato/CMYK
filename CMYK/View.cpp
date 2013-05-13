@@ -6,6 +6,7 @@
  */
 
 #include "View.h"
+#include "Controller.h"
 
 #define FAST false
 
@@ -14,7 +15,7 @@
 View::View() {
 }
 
-void View::pokazPrzesuniecie(int pozycjaPrzesuniecia, const Polka& polka){
+void View::pokazPrzesuniecie(int pozycjaPrzesuniecia, const Polka* polka){
     if(FAST)
         return;
     
@@ -27,7 +28,7 @@ void View::pokazPrzesuniecie(int pozycjaPrzesuniecia, const Polka& polka){
     }
     cout << "V";
     if (DEBUG_MODE){
-        cout << "Wielkosc Polki: " << polka.size();
+        cout << "Wielkosc Polki: " << polka->size();
     }
     
     cout << endl;
@@ -38,15 +39,15 @@ void View::pokazPrzesuniecie(int pozycjaPrzesuniecia, const Polka& polka){
 void View::pokazWynik(int wielkosc, int wynik,clock_t czas , int algorytm){
     std::string alg;
     switch (algorytm){
-        case 0:
+        case WYB:
             alg = "wybierajacym";
             break;
             
-        case 1:
+        case REK:
             alg = "rekurencyjnym";
             break;
             
-        case 2:
+        case LOS:
             alg = "losujacym";
             break;
     }
@@ -54,13 +55,13 @@ void View::pokazWynik(int wielkosc, int wynik,clock_t czas , int algorytm){
     cout << "\n************************************************************ \n";
     cout << "Polke " << wielkosc << " elementowa posortowano algorytmem "
             << alg << endl << "W "  << wynik << " ruchach\n";
-    cout << "W czasie :" << (long int)czas << " mili sekund\n";
+    cout << "W czasie :" << czas << " mili sekund\n";
     cout << "************************************************************ \n";
 }
 
-void View::pokazPolke(const Polka& polka){
-    Polka::const_iterator koniec = polka.end();
-    for (Polka::const_iterator iter = polka.begin(); iter != koniec;
+void View::pokazPolke(const Polka *polka){
+    Polka::const_iterator koniec = polka->end();
+    for (Polka::const_iterator iter = polka->begin(); iter != koniec;
             ++iter){
         
         cout << *iter;
