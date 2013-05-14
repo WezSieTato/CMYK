@@ -145,8 +145,6 @@ void WybierajacyRobot::przesunJeden(){
                 przesunPojemniki(iloscUlozonych + pozycjaIterator - 4);
                 przesunPojemniki(iloscUlozonych - 4 + pozycjaRobocza);
                 
-                
-                
                 wybierz(przesuniecieKoncone); 
                 return;
             }
@@ -208,4 +206,3 @@ void WybierajacyRobot::przesunPiatke(int ileRazy){
 
 WybierajacyRobot::~WybierajacyRobot() {
 }
-

@@ -40,8 +40,8 @@ protected:
     
     void podajStanPolki(Polka *celSkanowania) const;
     
-    bool przesunPojemniki(list<Pojemnik>::iterator pozycjaRamy);
-    bool przesunPojemniki(list<Pojemnik>::iterator pozycjaRamy, Polka *cel);
+    bool przesunPojemniki(Polka::iterator pozycjaRamy);
+    bool przesunPojemniki(Polka::iterator pozycjaRamy, Polka *cel);
     
     bool przesunPojemniki(int pozycjaRamy);
     bool przesunPojemniki(int pozycjaRamy, Polka *cel);

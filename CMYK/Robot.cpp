@@ -51,7 +51,7 @@ bool Robot::przesunPojemniki(Polka::iterator pozycjaRamy){
     return przesunPojemniki(pozycjaRamy, polka);
 }
 
-bool Robot::przesunPojemniki(list<Pojemnik>::iterator pozycjaRamy, Polka *cel){
+bool Robot::przesunPojemniki(Polka::iterator pozycjaRamy, Polka *cel){
     Polka::iterator koniecRamy(pozycjaRamy);
     Polka::iterator koniecPolki(cel->end());
     
@@ -62,6 +62,11 @@ bool Robot::przesunPojemniki(list<Pojemnik>::iterator pozycjaRamy, Polka *cel){
         if(++koniecRamy == koniecPolki)
             return false;
     }
+    
+//        Polka::iterator test(pozycjaRamy);
+//        for(;test != koniecRamy;++test)
+//            cout << *test;
+//        cout << endl;
     
     Polka ramieRobota;
     ramieRobota.insert(ramieRobota.end(), pozycjaRamy, koniecRamy);

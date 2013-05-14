@@ -81,5 +81,6 @@ Polka Controller::wczytajPolke(const char* polka){
 }
 
 Controller::~Controller() {
+    delete robot;
 }
 
