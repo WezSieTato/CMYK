@@ -22,7 +22,7 @@ private:
     /**
      * iterator na ostatnio ulozony pojemnik
      */
-    Polka::iterator ostatnioUlozony;
+//    Polka::iterator ostatnioUlozony;
     
     /**
      * funkcja aktualizujaca tablice z iloscia poszczegolnych kolorow

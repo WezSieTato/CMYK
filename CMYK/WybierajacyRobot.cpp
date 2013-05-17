@@ -74,19 +74,17 @@ void WybierajacyRobot::ustalSzukanyKolor(){
 bool WybierajacyRobot::ustalPoczatekSortowania(){
     Polka::iterator tmp;
 
+    tmp = polka->begin();
     if (!iloscUlozonych){
-        tmp = polka->begin();
-    }
-    else{
-        tmp = ostatnioUlozony;
-        ++tmp;
+        for (int i = 0; i < iloscUlozonych; ++i)
+            ++tmp;
     }
     
     if (tmp == polka->end())
         return false;
    
     if (*tmp == szukanyKolor){
-        ostatnioUlozony = tmp;
+//        ostatnioUlozony = tmp;
         ++iloscUlozonych;
         --iloscKoloru[szukanyKolor];
         ustalSzukanyKolor();
@@ -97,24 +95,30 @@ bool WybierajacyRobot::ustalPoczatekSortowania(){
 }
 
 void WybierajacyRobot::przesunJeden(){
-    Polka::iterator iter;
+//    
     int pozycjaIterator = 0;
     
     if(DEBUG_MODE)
         cout << "Poczatek sortowania: " << iloscUlozonych << endl;
+
     
-    if (!iloscUlozonych)
+    if(true){
+        Polka::iterator iter;
         iter = polka->begin();
-    else{
-        iter = ostatnioUlozony;
-        ++iter;
-    }
-    
-    while(*iter != szukanyKolor){
-        ++iter;
-        ++pozycjaIterator;
+        if (!iloscUlozonych){
+            for (int i = 0; i < iloscUlozonych; ++i)
+                ++iter;
+        }
+     
+        while(*iter != szukanyKolor){
+            ++iter;
+            ++pozycjaIterator;
+        }
         
     }
+    
+    
+    
     if (pozycjaIterator%4 == 0){
         wybierz(pozycjaIterator);     
     }
